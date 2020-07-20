@@ -27,5 +27,5 @@ jobs:
 
 after_success:
   - julia -e 'if Sys.islinux()
-      using Pkg; pkg"add Coverage"; using Coverage; Coveralls.submit(Coveralls.process_folder())
+      using Pkg; Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())
     end'
