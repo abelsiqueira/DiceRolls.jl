@@ -1,3 +1,5 @@
+export CompositeRoll
+
 struct CompositeRoll <: Roll
   parts
   modifier :: Integer

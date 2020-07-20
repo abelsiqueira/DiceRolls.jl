@@ -1,4 +1,4 @@
-export keep
+export keep, KeepRoll
 
 struct KeepRoll <: Roll
   parts
@@ -14,7 +14,7 @@ function show(io :: IO, r :: KeepRoll)
   print(io, " keep $(r.kind) $(r.n)")
 end
 
-function keep(r :: Roll; kind :: Symbol = :lowest, n :: Integer = 1)
+function keep(r :: Roll; kind :: Symbol = :highest, n :: Integer = 1)
   if !(kind in [:lowest, :highest])
     error("second argument of drop should be :lowest or :highest")
   end

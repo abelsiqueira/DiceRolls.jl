@@ -1,4 +1,4 @@
-export drop
+export drop, DropRoll
 
 struct DropRoll <: Roll
   parts

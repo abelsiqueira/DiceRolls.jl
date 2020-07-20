@@ -1,3 +1,5 @@
+export DiceRoll
+
 struct DiceRoll <: Roll
   parts
   modifier :: Integer
@@ -5,7 +7,8 @@ struct DiceRoll <: Roll
 end
 
 function show(io :: IO, r :: DiceRoll)
-  U = sort(unique(r.parts), by=x->x.sides)
+  U = r.activator == sum ? unique(r.parts) : r.parts
+  U = sort(U, by=x->x.sides)
   conn = if r.activator == sum
     "+"
   elseif r.activator == prod
@@ -13,10 +16,12 @@ function show(io :: IO, r :: DiceRoll)
   else
     "?"
   end
-  for u in U
-    print(io, sum(u == ri for ri in r.parts))
+  for (i,u) in enumerate(U)
+    if r.activator == sum
+      print(io, sum(u == ri for ri in r.parts))
+    end
     print(io, u)
-    if u != U[end]
+    if i != length(U)
       print(io, conn)
     end
   end

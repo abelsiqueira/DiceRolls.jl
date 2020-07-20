@@ -5,8 +5,8 @@ function *(n :: Integer, d :: Dice)
   DiceRoll([d for _ = 1:n], 0, sum)
 end
 *(d :: Dice, n :: Integer) = n * d
-*(d :: Dice...) = DiceRoll(d, 0, prod)
-*(r :: Roll...) = CompositeRoll(r, 0, prod)
+*(d :: Dice...) = DiceRoll([d...], 0, prod)
+*(r :: Roll...) = CompositeRoll([r...], 0, prod)
 
 +(d :: Dice, n :: Integer) = DiceRoll([d], n, sum)
 -(d :: Dice, n :: Integer) = DiceRoll([d], -n, sum)
