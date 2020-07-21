@@ -1,5 +1,12 @@
 export Dice, roll
 
+"""
+    Dice(sides)
+
+`Dice` is the basic structure of the package. It has `sides`.
+The traditionall RPG dices are predefined: `d4`, `d6`, `d8`, `d10`, `d12`, and `d20`.
+There is also an additional useful "dice": `coin`.
+"""
 struct Dice
   sides
 end
@@ -19,6 +26,11 @@ for s in [4, 6, 8, 10, 12, 20, 100]
   end
 end
 
+"""
+    roll(d :: Dice)
+
+Roll the dice `d`.
+"""
 function roll(d :: Dice)
   rand(1:d.sides)
 end

@@ -1,5 +1,9 @@
 export keep, KeepRoll
 
+"""
+A KeepRoll is a roll where some of the parts of the internal roll are ignored.
+See `keep` for more information.
+"""
 struct KeepRoll <: Roll
   parts
   modifier :: Integer
@@ -14,6 +18,19 @@ function show(io :: IO, r :: KeepRoll)
   print(io, " keep $(r.kind) $(r.n)")
 end
 
+"""
+    keep(r)
+    keep(r; kind=:highest, n=1)
+
+Keep only the highest part of a roll. Notice that for a `DiceRoll`, this means keeping the
+largest dice in a roll, but for composite dice, it can mean keeping a whole segment.
+See the behaviour of `drop` for more information.
+
+**keyword arguments**
+
+- `kind`: Either `:lowest` or `:highest` to keep either the lowest or highest roll or rolls.
+- `n`: The number of dices to be kept.
+"""
 function keep(r :: Roll; kind :: Symbol = :highest, n :: Integer = 1)
   if !(kind in [:lowest, :highest])
     error("second argument of drop should be :lowest or :highest")

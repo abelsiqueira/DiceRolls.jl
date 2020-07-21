@@ -1,5 +1,8 @@
 export DiceRoll
 
+"""
+A DiceRoll is an Roll made only of dices. A sum or product of several dices, for instance.
+"""
 struct DiceRoll <: Roll
   parts
   modifier :: Integer
@@ -32,6 +35,11 @@ function show(io :: IO, r :: DiceRoll)
   end
 end
 
+"""
+    Roll(d :: Dice)
+
+Create a Roll from a single Dice. Usually used internally.
+"""
 function Roll(d :: Dice...)
   DiceRoll([d...], 0, sum)
 end
