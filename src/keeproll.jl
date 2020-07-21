@@ -18,7 +18,7 @@ function keep(r :: Roll; kind :: Symbol = :highest, n :: Integer = 1)
   if !(kind in [:lowest, :highest])
     error("second argument of drop should be :lowest or :highest")
   end
-  if length(r.parts) ≤ n
+  if length(r.parts) < n
     error("Can't keep $n parts of roll with $(length(r.parts)) parts")
   end
 
