@@ -2,10 +2,6 @@
 
 _A package for dealing with dices in Julia._
 
-!!! warning
-
-    This package is **unreleased** and **unstable**.
-
 ```@contents
 Pages = ["index.md"]
 ```
