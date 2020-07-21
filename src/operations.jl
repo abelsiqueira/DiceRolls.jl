@@ -9,8 +9,8 @@ end
 *(r :: Roll...) = CompositeRoll([r...], 0, prod)
 *(r :: DiceRoll, d :: Dice) = r * DiceRoll([d], 0, prod)
 *(d :: Dice, r :: DiceRoll) = r * DiceRoll([d], 0, prod)
-*(r :: Roll, d :: Dice) = r * CompositeRoll([d], 0, prod)
-*(d :: Dice, r :: Roll) = r * CompositeRoll([d], 0, prod)
+*(r :: Roll, d :: Dice) = DiceRoll([d], 0, prod) * r
+*(d :: Dice, r :: Roll) = DiceRoll([d], 0, prod) * r
 
 +(d :: Dice, n :: Integer) = DiceRoll([d], n, sum)
 +(n :: Integer, d :: Dice) = DiceRoll([d], n, sum)
