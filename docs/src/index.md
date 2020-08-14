@@ -94,9 +94,30 @@ UnicodePlots.barplot(results, frequency)
 
 ## Statistics
 
-You can compute some statistical information of a dice or roll with the function [`mean`], [`median`], [`std`] and [`var`]
+You can compute some statistical information of a dice or roll with the function [`mean`](@ref), [`median`](@ref), [`std`](@ref) and [`var`](@ref)
 
 ```@example ex1
 r = drop(3d4)
 mean(r), median(r), std(r), var(r)
+```
+
+## Comparisons and Probabilities
+
+Using comparison operators on a roll will return (a compact representation of) all rolls that
+satisfy that comparison. For instance,
+
+```@example ex1
+r = drop(3d4)
+collect(r > 7)
+```
+
+```@example ex1
+collect(r == 7)
+```
+
+Using [`prob`](@ref) one can compute the probability of that situation happening.
+
+```@example ex1
+r = drop(4d6)
+prob(r > 14)
 ```
