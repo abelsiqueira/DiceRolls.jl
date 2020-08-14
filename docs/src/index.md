@@ -91,3 +91,12 @@ We can also pass `normalize=true` to compute the probabilities instead.
 results, frequency = Dices.histogram(drop(3d4), normalize=true)
 UnicodePlots.barplot(results, frequency)
 ```
+
+## Statistics
+
+You can compute some statistical information of a dice or roll with the function [`mean`], [`median`], [`std`] and [`var`]
+
+```@example ex1
+r = drop(3d4)
+mean(r), median(r), std(r), var(r)
+```
