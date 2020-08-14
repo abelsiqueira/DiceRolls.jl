@@ -1,8 +1,9 @@
 using Dices
-using Test
+using Distributions, Test
 
 include("basic.jl")
 include("error.jl")
 include("operations.jl")
 include("show.jl")
 include("histogram.jl")
+include("statistics.jl")
