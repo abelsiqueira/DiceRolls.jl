@@ -1,3 +1,7 @@
+<p>
+  <img width="150" align='right' src="docs/build/assets/logo.png">
+</p>
+
 # Dices.jl
 
 _This package defines dices and operations with them._
