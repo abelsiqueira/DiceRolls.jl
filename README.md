@@ -1,5 +1,5 @@
 <p>
-  <img width="150" align='right' src="docs/build/assets/logo.png">
+  <img width="150" align='right' src="https://github.com/abelsiqueira/Dices.jl/raw/master/docs/src/assets/logo.png">
 </p>
 
 # Dices.jl
