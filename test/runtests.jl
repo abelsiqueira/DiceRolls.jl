@@ -1,4 +1,4 @@
-using Dices
+using DiceRolls
 using Distributions, Test
 
 include("basic.jl")

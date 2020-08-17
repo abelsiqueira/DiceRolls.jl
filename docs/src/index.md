@@ -1,6 +1,6 @@
-# Dices.jl
+# DiceRolls.jl
 
-_A package for dealing with dices in Julia._
+_A package for dealing with dice in Julia._
 
 ```@contents
 Pages = ["index.md"]
@@ -8,11 +8,11 @@ Pages = ["index.md"]
 
 ## Description
 
-This package defines dices and some operations with them.
+This package defines dice and some operations with them.
 Dice is the basic unit of the package. It can be created with a simple call:
 
 ```@example ex1
-using Dices
+using DiceRolls
 Dice(6)
 ```
 
@@ -22,7 +22,7 @@ There are some existing dice already defined:
 d4, d6, d8, d10, d12, d20
 ```
 
-As expected you can perform some operations with Dices:
+As expected you can perform some operations with dice:
 
 ```@example ex1
 3d6, 2d4 + 2, d4 + d6
@@ -34,7 +34,7 @@ And finally, you have one last "Dice" defined:
 coin
 ```
 
-And naturally you can roll these dices.
+And naturally you can roll these dice.
 
 ```@example ex1
 using UnicodePlots
@@ -81,14 +81,14 @@ UnicodePlots.histogram(v)
 Lastly, we define a function `histogram` that computes all combinations and the histogram of results.
 
 ```@example ex1
-results, frequency = Dices.histogram(drop(3d4))
+results, frequency = DiceRolls.histogram(drop(3d4))
 UnicodePlots.barplot(results, frequency)
 ```
 
 We can also pass `normalize=true` to compute the probabilities instead.
 
 ```@example ex1
-results, frequency = Dices.histogram(drop(3d4), normalize=true)
+results, frequency = DiceRolls.histogram(drop(3d4), normalize=true)
 UnicodePlots.barplot(results, frequency)
 ```
 

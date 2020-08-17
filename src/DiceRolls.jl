@@ -1,4 +1,4 @@
-module Dices
+module DiceRolls
 
 using LinearAlgebra: dot
 

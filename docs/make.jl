@@ -1,7 +1,7 @@
-using Documenter, Dices
+using Documenter, DiceRolls
 
 makedocs(
-    sitename = "Dices.jl",
+    sitename = "DiceRolls.jl",
     format = Documenter.HTML(
         assets = ["assets/style.css"],
         prettyurls = get(ENV, "CI", nothing) == "true"
@@ -9,5 +9,5 @@ makedocs(
 )
 
 deploydocs(
-    repo = "github.com/abelsiqueira/Dices.jl.git",
+    repo = "github.com/abelsiqueira/DiceRolls.jl.git",
 )

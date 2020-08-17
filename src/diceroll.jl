@@ -1,7 +1,7 @@
 export DiceRoll
 
 """
-A DiceRoll is an Roll made only of dices. A sum or product of several dices, for instance.
+A DiceRoll is an Roll made only of dice. A sum or product of several dice, for instance.
 """
 struct DiceRoll <: Roll
   parts

@@ -1,5 +1,5 @@
-name = "Dices"
-uuid = "3be7bea4-956c-482b-8fe8-b2cc98518727"
+name = "DiceRolls"
+uuid = "4e90bd87-f6f8-42e4-be30-8e164e8f6f7c"
 authors = ["Abel Soares Siqueira <abel.s.siqueira@gmail.com>"]
 version = "0.1.1"
 

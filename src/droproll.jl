@@ -28,7 +28,7 @@ For instance
 ```
 drop(4d6)
 ```
-will drop the lowest valued dice of the four 6-sided dices rolled. It is equivalent to
+will drop the lowest valued dice of the four 6-sided dice rolled. It is equivalent to
 ```
 v = roll.([d6, d6, d6, d6])
 sum(v) - minimum(v)
@@ -46,7 +46,7 @@ sum(v) - minimum(v)
 **keyword arguments**
 
 - `kind`: Either `:lowest` or `:highest` to remove either the lowest or highest roll or rolls.
-- `n`: The number of dices to be removed.
+- `n`: The number of dice to be removed.
 """
 function drop(r :: Roll; kind :: Symbol = :lowest, n :: Integer = 1)
   if !(kind in [:lowest, :highest])
