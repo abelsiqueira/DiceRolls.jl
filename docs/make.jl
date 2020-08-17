@@ -10,4 +10,5 @@ makedocs(
 
 deploydocs(
     repo = "github.com/abelsiqueira/DiceRolls.jl.git",
+    devbranch = "main",
 )
