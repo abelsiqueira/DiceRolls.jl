@@ -18,7 +18,7 @@ notifications:
 
 branches:
   only:
-    - master
+    - main
     - /^v\d+\.\d+(\.\d+)?(-\S*)?$/ # tags
 
 jobs:
@@ -37,4 +37,3 @@ after_success:
   - julia -e 'if Sys.islinux()
       using Pkg; Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())
     end'
-    
