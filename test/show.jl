@@ -1,5 +1,5 @@
 @testset "Show" begin
-  @testset "Dices" begin
+  @testset "Dice" begin
     @test string(d4) == "d₄"
     @test string(d6) == "d₆"
     @test string(d8) == "d₈"

@@ -29,7 +29,7 @@ See the behaviour of `drop` for more information.
 **keyword arguments**
 
 - `kind`: Either `:lowest` or `:highest` to keep either the lowest or highest roll or rolls.
-- `n`: The number of dices to be kept.
+- `n`: The number of dice to be kept.
 """
 function keep(r :: Roll; kind :: Symbol = :highest, n :: Integer = 1)
   if !(kind in [:lowest, :highest])

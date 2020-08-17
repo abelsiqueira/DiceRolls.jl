@@ -1,9 +1,9 @@
 @testset "Statistics" begin
-  dices = [d4, d10, 2d6, 2d4+d6, 2d4+2d6, (1d4 - 1) * (1d4 - 1), drop(3d4), keep(3d4)]
+  dicelist = [d4, d10, 2d6, 2d4+d6, 2d4+2d6, (1d4 - 1) * (1d4 - 1), drop(3d4), keep(3d4)]
   foos = [mean, median, std, var]
   for foo in foos
     @testset "$foo" begin
-      for dice in dices
+      for dice in dicelist
         D = DiscreteNonParametric(histogram(dice, normalize=true)...)
         @test foo(dice) ≈ foo(D)
       end
