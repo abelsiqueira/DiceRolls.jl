@@ -1,5 +1,5 @@
 <p>
-  <img width="150" align='right' src="https://github.com/abelsiqueira/DiceRolls.jl/raw/master/docs/src/assets/logo.png">
+  <img width="150" align='right' src="https://github.com/abelsiqueira/DiceRolls.jl/raw/main/docs/src/assets/logo.png">
 </p>
 
 # DiceRolls.jl
