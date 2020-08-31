@@ -18,14 +18,21 @@ _This package defines dice and operations with them._
 This package defines dice and some operations with them. We recommend looking into the docs for a better description of what you can do. As a simple example, here is the distribution of the tradicional ability score roll on Dungeons and Dragons, i.e., rolling 4 six-sided dice, removing the lowest and summing the result.
 
 ```julia
-using DiceRolls, Plots
-
-begin
-  v, f = DiceRolls.histogram(drop(4d6), normalize=true)
-  Plots.bar(v, f, size=(400,300), leg=false)
-  xticks!(v)
-  png("4d6D1")
-end
+v, f = DiceRolls.histogram(drop(4d6), normalize=true)
+Plots.bar(v, f, size=(400,300), leg=false)
+xticks!(v)
 ```
 
 ![](examples/4d6D1.png)
+
+Another example is to roll two four-sided dice, subtract 1 from each, and multiply the result.
+
+```julia
+v, f = DiceRolls.histogram((1d4 - 1) * (1d4 - 1))
+Plots.bar(v, f, size=(400,300), leg=false)
+xticks!(v)
+```
+
+![](examples/complex.png)
+
+This example can be found in the [examples](examples) folder.
