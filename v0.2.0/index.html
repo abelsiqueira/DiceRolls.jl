@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>DiceRolls.jl · DiceRolls.jl</title><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script><link href="assets/style.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href><img src="assets/logo.png" alt="DiceRolls.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit">DiceRolls.jl</span></div><form class="docs-search" action="search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li class="is-active"><a class="tocitem" href>DiceRolls.jl</a><ul class="internal"><li><a class="tocitem" href="#Description"><span>Description</span></a></li><li><a class="tocitem" href="#Sum-and-Multiplication"><span>Sum and Multiplication</span></a></li><li><a class="tocitem" href="#Drop-and-Keep"><span>Drop and Keep</span></a></li><li><a class="tocitem" href="#Histogram"><span>Histogram</span></a></li><li><a class="tocitem" href="#Statistics"><span>Statistics</span></a></li><li><a class="tocitem" href="#Comparisons-and-Probabilities"><span>Comparisons and Probabilities</span></a></li></ul></li><li><a class="tocitem" href="reference/">Reference</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>DiceRolls.jl</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>DiceRolls.jl</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/abelsiqueira/DiceRolls.jl/blob/master/docs/src/index.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="DiceRolls.jl"><a class="docs-heading-anchor" href="#DiceRolls.jl">DiceRolls.jl</a><a id="DiceRolls.jl-1"></a><a class="docs-heading-anchor-permalink" href="#DiceRolls.jl" title="Permalink"></a></h1><p><em>A package for dealing with dice in Julia.</em></p><ul><li><a href="#DiceRolls.jl">DiceRolls.jl</a></li><ul><li><a href="#Description">Description</a></li><li><a href="#Sum-and-Multiplication">Sum and Multiplication</a></li><li><a href="#Drop-and-Keep">Drop and Keep</a></li><li><a href="#Histogram">Histogram</a></li><li><a href="#Statistics">Statistics</a></li><li><a href="#Comparisons-and-Probabilities">Comparisons and Probabilities</a></li></ul></ul><h2 id="Description"><a class="docs-heading-anchor" href="#Description">Description</a><a id="Description-1"></a><a class="docs-heading-anchor-permalink" href="#Description" title="Permalink"></a></h2><p>This package defines dice and some operations with them. Dice is the basic unit of the package. It can be created with a simple call:</p><pre><code class="language-julia">using DiceRolls
+Dice(6)</code></pre><pre class="documenter-example-output">d₆</pre><p>There are some existing dice already defined:</p><pre><code class="language-julia">d4, d6, d8, d10, d12, d20</code></pre><pre class="documenter-example-output">(d₄, d₆, d₈, d₁₀, d₁₂, d₂₀)</pre><p>As expected you can perform some operations with dice:</p><pre><code class="language-julia">3d6, 2d4 + 2, d4 + d6</code></pre><pre class="documenter-example-output">(3d₆, 2d₄+2, 1d₄+1d₆)</pre><p>And finally, you have one last &quot;Dice&quot; defined:</p><pre><code class="language-julia">coin</code></pre><pre class="documenter-example-output">1d₂-1</pre><p>And naturally you can roll these dice.</p><pre><code class="language-julia">using UnicodePlots
+v = [roll(3d4) for _ = 1:10000]
+UnicodePlots.histogram(v)</code></pre><pre class="documenter-example-output">                ┌                                        ┐ 
+   [ 3.0,  4.0) ┤▇▇▇ 151                                   
+   [ 4.0,  5.0) ┤▇▇▇▇▇▇▇▇ 455                              
+   [ 5.0,  6.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 896                      
+   [ 6.0,  7.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1603         
+   [ 7.0,  8.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1842    
+   [ 8.0,  9.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1916   
+   [ 9.0, 10.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1607        
+   [10.0, 11.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 898                      
+   [11.0, 12.0) ┤▇▇▇▇▇▇▇▇ 473                              
+   [12.0, 13.0) ┤▇▇▇ 159                                   
+                └                                        ┘ 
+                                Frequency</pre><h2 id="Sum-and-Multiplication"><a class="docs-heading-anchor" href="#Sum-and-Multiplication">Sum and Multiplication</a><a id="Sum-and-Multiplication-1"></a><a class="docs-heading-anchor-permalink" href="#Sum-and-Multiplication" title="Permalink"></a></h2><p>You can sum and multiply dice:</p><pre><code class="language-julia">d6 * d6 + d4 * d8</code></pre><pre class="documenter-example-output">(d₆×d₆)+(d₄×d₈)</pre><h2 id="Drop-and-Keep"><a class="docs-heading-anchor" href="#Drop-and-Keep">Drop and Keep</a><a id="Drop-and-Keep-1"></a><a class="docs-heading-anchor-permalink" href="#Drop-and-Keep" title="Permalink"></a></h2><p>You can easily drop the lowest dice of a roll:</p><pre><code class="language-julia">r = drop(4d6)</code></pre><pre class="documenter-example-output">4d₆ drop lowest 1</pre><pre><code class="language-julia">v = [roll(r) for _ = 1:10000]
+UnicodePlots.histogram(v)</code></pre><pre class="documenter-example-output">                ┌                                        ┐ 
+   [ 3.0,  4.0) ┤ 5                                        
+   [ 4.0,  5.0) ┤▇ 30                                      
+   [ 5.0,  6.0) ┤▇▇ 68                                     
+   [ 6.0,  7.0) ┤▇▇▇▇ 164                                  
+   [ 7.0,  8.0) ┤▇▇▇▇▇▇▇ 290                               
+   [ 8.0,  9.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇ 489                          
+   [ 9.0, 10.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 714                    
+   [10.0, 11.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 988             
+   [11.0, 12.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1079          
+   [12.0, 13.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1276     
+   [13.0, 14.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1360   
+   [14.0, 15.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1217       
+   [15.0, 16.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1041           
+   [16.0, 17.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 696                     
+   [17.0, 18.0) ┤▇▇▇▇▇▇▇▇▇▇▇ 430                           
+   [18.0, 19.0) ┤▇▇▇▇ 153                                  
+                └                                        ┘ 
+                                Frequency</pre><p>Drop can also be used with argument <code>kind=:highest</code> to drop the highest roll, and with <code>n=&lt;some number&gt;</code> to drop more than one dice.</p><p>Keep works the same way except that it keeps the highest value by default. It accepts the same arguments.</p><pre><code class="language-julia">r = keep(2d20)</code></pre><pre class="documenter-example-output">2d₂₀ keep highest 1</pre><pre><code class="language-julia">v = [roll(r) for _ = 1:10000]
+UnicodePlots.histogram(v)</code></pre><pre class="documenter-example-output">                ┌                                        ┐ 
+   [ 0.0,  2.0) ┤ 26                                       
+   [ 2.0,  4.0) ┤▇▇▇▇ 215                                  
+   [ 4.0,  6.0) ┤▇▇▇▇▇▇▇ 388                               
+   [ 6.0,  8.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇ 617                          
+   [ 8.0, 10.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 840                      
+   [10.0, 12.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1036                 
+   [12.0, 14.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1149               
+   [14.0, 16.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1399          
+   [16.0, 18.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1640      
+   [18.0, 20.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1774   
+   [20.0, 22.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 916                    
+                └                                        ┘ 
+                                Frequency</pre><h2 id="Histogram"><a class="docs-heading-anchor" href="#Histogram">Histogram</a><a id="Histogram-1"></a><a class="docs-heading-anchor-permalink" href="#Histogram" title="Permalink"></a></h2><p>Lastly, we define a function <code>histogram</code> that computes all combinations and the histogram of results.</p><pre><code class="language-julia">results, frequency = DiceRolls.histogram(drop(3d4))
+UnicodePlots.barplot(results, frequency)</code></pre><pre class="documenter-example-output">     ┌                                        ┐ 
+   2 ┤■■ 1                                      
+   3 ┤■■■■■■■ 3                                 
+   4 ┤■■■■■■■■■■■■■■■■ 7                        
+   5 ┤■■■■■■■■■■■■■■■■■■■■■■■■■■■ 12            
+   6 ┤■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 16   
+   7 ┤■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 15     
+   8 ┤■■■■■■■■■■■■■■■■■■■■■■■ 10                
+     └                                        ┘ </pre><p>We can also pass <code>normalize=true</code> to compute the probabilities instead.</p><pre><code class="language-julia">results, frequency = DiceRolls.histogram(drop(3d4), normalize=true)
+UnicodePlots.barplot(results, frequency)</code></pre><pre class="documenter-example-output">     ┌                                        ┐ 
+   2 ┤■■ 0.015625                               
+   3 ┤■■■■■■ 0.046875                           
+   4 ┤■■■■■■■■■■■■■■■ 0.109375                  
+   5 ┤■■■■■■■■■■■■■■■■■■■■■■■■■■ 0.1875         
+   6 ┤■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 0.25   
+   7 ┤■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 0.234375  
+   8 ┤■■■■■■■■■■■■■■■■■■■■■ 0.15625             
+     └                                        ┘ </pre><h2 id="Statistics"><a class="docs-heading-anchor" href="#Statistics">Statistics</a><a id="Statistics-1"></a><a class="docs-heading-anchor-permalink" href="#Statistics" title="Permalink"></a></h2><p>You can compute some statistical information of a dice or roll with the function <a href="reference/#Statistics.mean-Tuple{Union{Dice, Roll}}"><code>mean</code></a>, <a href="reference/#Statistics.median-Tuple{Union{Dice, Roll}}"><code>median</code></a>, <a href="reference/#Statistics.std-Tuple{Union{Dice, Roll}}"><code>std</code></a> and <a href="reference/#Statistics.var-Tuple{Union{Dice, Roll}}"><code>var</code></a></p><pre><code class="language-julia">r = drop(3d4)
+mean(r), median(r), std(r), var(r)</code></pre><pre class="documenter-example-output">(5.9375, 6, 1.4670868242881878, 2.15234375)</pre><h2 id="Comparisons-and-Probabilities"><a class="docs-heading-anchor" href="#Comparisons-and-Probabilities">Comparisons and Probabilities</a><a id="Comparisons-and-Probabilities-1"></a><a class="docs-heading-anchor-permalink" href="#Comparisons-and-Probabilities" title="Permalink"></a></h2><p>Using comparison operators on a roll will return (a compact representation of) all rolls that satisfy that comparison. For instance,</p><pre><code class="language-julia">r = drop(3d4)
+collect(r &gt; 7)</code></pre><pre class="documenter-example-output">10-element Array{Array{Int64,1},1}:
+ [4, 4, 1]
+ [4, 4, 2]
+ [4, 4, 3]
+ [4, 1, 4]
+ [4, 2, 4]
+ [4, 3, 4]
+ [1, 4, 4]
+ [2, 4, 4]
+ [3, 4, 4]
+ [4, 4, 4]</pre><pre><code class="language-julia">collect(r == 7)</code></pre><pre class="documenter-example-output">15-element Array{Array{Int64,1},1}:
+ [4, 3, 1]
+ [3, 4, 1]
+ [4, 3, 2]
+ [3, 4, 2]
+ [4, 1, 3]
+ [4, 2, 3]
+ [4, 3, 3]
+ [1, 4, 3]
+ [2, 4, 3]
+ [3, 4, 3]
+ [3, 1, 4]
+ [3, 2, 4]
+ [1, 3, 4]
+ [2, 3, 4]
+ [3, 3, 4]</pre><p>Using <a href="reference/#DiceRolls.prob-Tuple{CompactedComparison}"><code>prob</code></a> one can compute the probability of that situation happening.</p><pre><code class="language-julia">r = drop(4d6)
+prob(r &gt; 14)</code></pre><pre class="documenter-example-output">0.23148148148148148</pre></article><nav class="docs-footer"><a class="docs-footer-nextpage" href="reference/">Reference »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Friday 9 October 2020 03:38">Friday 9 October 2020</span>. Using Julia version 1.5.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
