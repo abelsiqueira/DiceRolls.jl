@@ -1,7 +1,7 @@
 name = "DiceRolls"
 uuid = "4e90bd87-f6f8-42e4-be30-8e164e8f6f7c"
 authors = ["Abel Soares Siqueira <abel.s.siqueira@gmail.com>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 Combinatorics = "861a8166-3701-5b0c-9a16-15d98fcdc6aa"
