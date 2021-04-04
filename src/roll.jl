@@ -18,5 +18,6 @@ include("diceroll.jl")
 include("compositeroll.jl")
 include("droproll.jl")
 include("keeproll.jl")
+include("maproll.jl")
 
 include("rolllist.jl")
