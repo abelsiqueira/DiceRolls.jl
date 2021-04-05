@@ -47,14 +47,30 @@ function ==(r1 :: Roll, r2 :: Roll)
   r1.parts == r2.parts && r1.modifier == r2.modifier && r1.activator == r2.activator
 end
 
+function Base.hash(r :: Roll, h :: UInt)
+  hash(r.parts) ⊻ hash(r.modifier) ⊻ hash(r.activator) ⊻ h
+end
+
 function ==(r1 :: DiceRoll, r2 :: DiceRoll)
   sort(r1.parts, by=x->x.sides) == sort(r2.parts, by=x->x.sides) && r1.modifier == r2.modifier && r1.activator == r2.activator
+end
+
+function Base.hash(r :: DiceRoll, h :: UInt)
+  hash(sort(r.parts, by=x->x.sides)) ⊻ hash(r.modifier) ⊻ hash(r.activator) ⊻ h
 end
 
 function ==(r1 :: DropRoll, r2 :: DropRoll)
   r1.parts == r2.parts && r1.modifier == r2.modifier && r1.activator == r2.activator && r1.kind == r2.kind && r1.n == r2.n
 end
 
+function Base.hash(r :: DropRoll, h :: UInt)
+  hash(r.parts) ⊻ hash(r.modifier) ⊻ hash(r.activator) ⊻ hash(r.kind) ⊻ hash(r.n) ⊻ h
+end
+
 function ==(r1 :: KeepRoll, r2 :: KeepRoll)
   r1.parts == r2.parts && r1.modifier == r2.modifier && r1.activator == r2.activator && r1.kind == r2.kind && r1.n == r2.n
+end
+
+function Base.hash(r :: KeepRoll, h :: UInt)
+  hash(r.parts) ⊻ hash(r.modifier) ⊻ hash(r.activator) ⊻ hash(r.kind) ⊻ hash(r.n) ⊻ h
 end
