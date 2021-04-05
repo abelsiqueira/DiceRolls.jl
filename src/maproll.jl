@@ -12,23 +12,23 @@ end
 map_roll(r :: Union{Dice, Roll}, mapper) = MapRoll(r, mapper)
 
 function histogram(r :: MapRoll; normalize :: Bool = false)
-  values, freqs = histogram(r.input_roll)
+  input_values, input_freqs = histogram(r.input_roll)
   # Output rolls to occurence
-  output_rolls = Dict{Roll, Int}()
+  output_rolls = Dict{Any,Int}()
   # Figure out all of the possible output rolls and their frequency
-  for (value, freq) in zip(values, freqs)
-    roll = r.mapper(value)
+  for (in_value, in_freq) in zip(input_values, input_freqs)
+    roll = r.mapper(in_value)
     if haskey(output_rolls, roll)
-      output_rolls[roll] += freq
+      output_rolls[roll] += in_freq
     else
-      output_rolls[roll] = freq
+      output_rolls[roll] = in_freq
     end
   end
 
   # Create the histogram of these rolls
-  hist = Dict()
+  hist = Dict{Int,Number}()
   for (roll, roll_freq) in output_rolls
-    values, freqs = histogram(roll; normalize = true)
+    values, freqs = histogram(roll, normalize = true)
     for (value, freq) in zip(values, freqs)
       if haskey(hist, value)
         hist[value] += freq * roll_freq

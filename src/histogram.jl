@@ -36,7 +36,7 @@ function histogram(r :: DiceRoll; normalize :: Bool = false)
 end
 
 function histogram(r :: Roll; normalize :: Bool = false)
-  hist = Dict{Int,Int}()
+  hist = Dict{Int,Number}()
 
   H = histogram.(r.parts)
   values = getindex.(H, 1)
