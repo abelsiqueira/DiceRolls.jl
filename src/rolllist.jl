@@ -24,14 +24,14 @@ end
 Stores a comparison between a roll r and a value x. Use `collect` to collect all the roll values
 that satisfy that comparison.
 """
-mutable struct CompactedComparison{R <: Union{Dice,Roll}}
-  r :: R
-  op
-  x
+mutable struct CompactedComparison{R <: Union{Dice,Roll},XR<:Real}
+  r::R
+  op::Any
+  x::XR
 end
 
-function CompactedComparison(r :: T, op, x :: Real) where T <: Roll
-  CompactedComparison{T}(r, op, x)
+function CompactedComparison(r :: R, op, x :: XR) where {R<:Roll,XR<:Real}
+  CompactedComparison{R,XR}(r, op, x)
 end
 
 <(r :: Union{Dice,Roll}, x :: Real) = CompactedComparison(r, <, x)

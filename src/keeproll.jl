@@ -4,13 +4,13 @@ export keep, KeepRoll
 A KeepRoll is a roll where some of the parts of the internal roll are ignored.
 See `keep` for more information.
 """
-struct KeepRoll <: Roll
-  parts
-  modifier :: Integer
-  activator
-  roll :: Roll
-  kind
-  n
+struct KeepRoll{P,I<:Integer,A,R} <: Roll
+  parts::P
+  modifier::I
+  activator::A
+  roll::R
+  kind::Symbol
+  n::I
 end
 
 function show(io :: IO, r :: KeepRoll)
