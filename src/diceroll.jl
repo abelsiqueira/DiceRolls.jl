@@ -3,10 +3,10 @@ export DiceRoll
 """
 A DiceRoll is an Roll made only of dice. A sum or product of several dice, for instance.
 """
-struct DiceRoll <: Roll
-  parts
-  modifier :: Integer
-  activator
+struct DiceRoll{P,I<:Integer,A} <: Roll
+  parts::P
+  modifier::I
+  activator::A
 end
 
 function show(io :: IO, r :: DiceRoll)

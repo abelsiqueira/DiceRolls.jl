@@ -4,10 +4,10 @@ export CompositeRoll
 A `CompositeRoll` is a roll where its parts are rolls.
 This structure is usually used only internally.
 """
-struct CompositeRoll <: Roll
-  parts
-  modifier :: Integer
-  activator
+struct CompositeRoll{P,I<:Integer,A} <: Roll
+  parts::P
+  modifier::I
+  activator::A
 end
 
 function show(io :: IO, r :: CompositeRoll)

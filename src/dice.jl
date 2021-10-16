@@ -8,7 +8,7 @@ The traditional RPG dice are predefined: `d4`, `d6`, `d8`, `d10`, `d12`, and `d2
 There is also an additional useful "dice": `coin`.
 """
 struct Dice
-  sides
+  sides::Int
 end
 
 import Base.show
