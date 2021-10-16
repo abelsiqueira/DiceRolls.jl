@@ -4,13 +4,13 @@ export drop, DropRoll
 A DropRoll is a roll where some of the parts of the internal roll are ignored.
 See `drop` for more information.
 """
-struct DropRoll <: Roll
-  parts
-  modifier :: Integer
-  activator
-  roll :: Roll
-  kind
-  n
+struct DropRoll{P,I<:Integer,A,R<:Roll} <: Roll
+  parts::P
+  modifier::I
+  activator::A
+  roll::R
+  kind::Symbol
+  n::I
 end
 
 function show(io :: IO, r :: DropRoll)
@@ -49,7 +49,7 @@ sum(v) - minimum(v)
 - `n`: The number of dice to be removed.
 """
 function drop(r :: Roll; kind :: Symbol = :lowest, n :: Integer = 1)
-  if !(kind in [:lowest, :highest])
+  if !(kind in (:lowest, :highest))
     error("second argument of drop should be :lowest or :highest")
   end
   if length(r.parts) ≤ n
